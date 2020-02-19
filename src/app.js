@@ -38,7 +38,7 @@ const initPlayers = players => {
     if ((position + 1) % 2 == 0) {
       detailedPlayers[position].type = "hero";
     } else {
-      detailedPlayers[position].type = "hero";
+      detailedPlayers[position].type = "villan";
     }
   }
   return detailedPlayers;
