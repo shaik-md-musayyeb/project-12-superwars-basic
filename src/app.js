@@ -35,7 +35,7 @@ const initPlayers = players => {
       image: "images/super-" + (position + 1) + ".png"
     };
 
-    if ((position + 1) % 2 == 0) {
+    if ((position) % 2 == 0) {
       detailedPlayers[position].type = "hero";
     } else {
       detailedPlayers[position].type = "villan";
@@ -52,34 +52,43 @@ const getRandomStrength = () => {
 };
 
 const buildPlayers = (players, type) => {
-  let fragment = "";
+  let fragment = '';
 
   // Loop through players and accumulate HTML template
   // depending of type of player(hero|villain)
   // Type your code here
-  // for (let position = 0, size = players.length; size > 0; size--, position++){}
-  // return fragment = players.forEach(({
-  //     type
-  // }) => {
-  //     `${type}`
-  // })
-
-  for (let position = 0, size = players.length; size > 0; size--, position++) {
-    return (fragment = `<div class="player">
-      <img src="${players[i].image}">
-      <div class="name">${players[i].name}</div>
-      <div class="strength">${players[i].strength}</div>
-   </div>`);
+  for (i = 0; i < players.length; i++) {
+    player = `
+        <div class="player">
+            <img src="${players[i].image}" alt="">
+            <div class="name">${players[i].name}</div>
+            <div class="strength">${players[i].strength}</div>
+        </div>`;
+    if (players[i].type == type)
+      fragment += player;
   }
-};
+
+  return fragment;
+}
+
+// for (var i = 0; i < PLAYERS.length; i++) {
+//   fragment = `
+//     <div class="player">
+//     <img src="${detailedPlayers[i].image}" alt = "characters">
+//     <h4> ${detailedPlayers[i].name}</h4>
+//     <h1>${detailedPlayers[i].strength}</h1>
+//     </div>
+//      `;
+//   return fragment;
+//   //Where did you add the alternate name for the image? (Note: Use alt inside the image tag)
+// }
+
+
 
 // Display players in HTML
 const viewPlayers = players => {
   document.getElementById("heroes").innerHTML = buildPlayers(players, "hero");
-  document.getElementById("villains").innerHTML = buildPlayers(
-    players,
-    "villain"
-  );
+  document.getElementById("villains").innerHTML = buildPlayers(players, "villain");
 };
 
 window.onload = () => {
